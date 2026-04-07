@@ -6,7 +6,6 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,25 +15,52 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.List;
 
+
+/**
+ * JWT Filter that intercepts incoming HTTP requests to validate JWT tokens.
+ *
+ * Responsibilities:
+ * - Skip authentication for public endpoints (login, refresh, signup)
+ * - Extract and validate JWT from Authorization header
+ * - Set authentication in Spring Security context for secured endpoints
+ *
+ * Extends OncePerRequestFilter to ensure filter runs once per request.
+ */
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
     private final UserRepository userRepository;
 
+
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param jwtUtil JWT utility for token operations
+     * @param userRepository Repository to load user details
+     */
     public JwtFilter(JwtUtil jwtUtil, UserRepository userRepository) {
         this.jwtUtil = jwtUtil;
         this.userRepository = userRepository;
     }
 
+    // Public URLs that do not require JWT authentication
     private static final String[] PUBLIC_URLS = {
             "/api/v1/login/getToken",
             "/api/v1/login/refresh",
             "/users/api/v1/signUp"
     };
 
+    /**
+     * Intercepts incoming requests and validates JWT if present.
+     *
+     * @param request incoming HTTP request
+     * @param response HTTP response
+     * @param filterChain filter chain to continue request processing
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,

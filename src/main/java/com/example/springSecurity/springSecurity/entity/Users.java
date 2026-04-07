@@ -7,6 +7,16 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
+/**
+ * This entity represents a User account in the system.
+ *
+ * It maps to the "users" table in the database and stores
+ * credentials, role, and account status for authentication
+ * and authorization purposes.
+ *
+ * Used in Spring Security for login, JWT token generation,
+ * and role-based access control.
+ */
 @Data
 @Getter
 @Setter

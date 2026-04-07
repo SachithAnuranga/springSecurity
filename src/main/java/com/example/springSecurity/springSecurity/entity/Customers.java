@@ -4,6 +4,16 @@ import lombok.*;
 
 import java.util.List;
 
+
+/**
+ * This entity represents a Customer in the system.
+ *
+ * It maps to the "customers" table in the database and
+ * holds basic customer information along with associated orders.
+ *
+ * Relationships:
+ * - One-to-Many with Orders (a customer can have multiple orders)
+ */
 @Entity
 @Table(
         name = "customers",

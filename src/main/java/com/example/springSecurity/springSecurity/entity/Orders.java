@@ -5,6 +5,16 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * This entity represents an Order in the system.
+ *
+ * It maps to the "orders" table in the database and holds
+ * order details along with relationships to customers and items.
+ *
+ * Relationships:
+ * - Many orders belong to one customer
+ * - One order can have many OrderItems
+ */
 @Entity
 @Table(name = "orders")
 @Data

@@ -5,6 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * This DTO is used to transfer customer data from the server
+ * to the client (typically in API responses).
+ *
+ * It represents the customer information without exposing
+ * unnecessary internal entities or relationships.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

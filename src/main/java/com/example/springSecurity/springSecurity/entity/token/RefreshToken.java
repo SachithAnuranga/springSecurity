@@ -6,6 +6,15 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
+/**
+ * This entity represents a Refresh Token stored in the database.
+ *
+ * It is used to implement JWT refresh token functionality
+ * for stateless authentication.
+ *
+ * Each refresh token is linked to a specific user and has
+ * an expiration date.
+ */
 @Entity
 @Table(name = "refresh_token")
 @Data

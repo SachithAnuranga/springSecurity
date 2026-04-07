@@ -4,6 +4,16 @@ import lombok.*;
 
 import java.util.List;
 
+/**
+ * This entity represents an Item (product) in the system.
+ *
+ * It maps to the "items" table in the database and
+ * holds basic item details along with its association
+ * with order items.
+ *
+ * Relationships:
+ * - One-to-Many with OrderItem (an item can be part of multiple orders)
+ */
 @Entity
 @Table(name = "items")
 @Data
